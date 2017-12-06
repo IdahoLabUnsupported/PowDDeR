@@ -21,6 +21,8 @@ public class SettingsModalBehavior : MonoBehaviour {
 		timeStepsField.text = settings.currentSettings.timeStepsPerSecond.ToString();
 		polarStepsField.text = settings.currentSettings.polarSteps.ToString();
 		colorPicker.color = settings.currentSettings.color;
+
+		// apparently to update color picker, it has to happen in late update
 		updateColorPicker = true;
 	}
 
@@ -41,8 +43,7 @@ public class SettingsModalBehavior : MonoBehaviour {
 	{
 		controller.HideModal ();
 	}
-
-
+		
 	void LateUpdate()
 	{
 		if (updateColorPicker) {

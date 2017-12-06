@@ -88,7 +88,7 @@ public class GenerateMesh : MonoBehaviour {
 
 		totalTimeSeconds = settings.currentSettings.totalTimeSeconds;
 		polarSteps = settings.currentSettings.polarSteps;
-		timeStepsPerSecond =settings.currentSettings.timeStepsPerSecond;
+		timeStepsPerSecond = settings.currentSettings.timeStepsPerSecond;
 
 		int count = 0;
 		int numMesh = 0;

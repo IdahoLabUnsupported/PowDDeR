@@ -24,8 +24,6 @@ public class Loader : MonoBehaviour {
 			return f1.Name.CompareTo(f2.Name);
 		});
 
-
-		// load all devices first
 		for (int i = 0; i < info.Length; i++) {
 			string json = File.ReadAllText (info[i].FullName);
 

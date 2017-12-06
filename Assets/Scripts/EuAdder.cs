@@ -18,7 +18,6 @@ public class EuAdder : MonoBehaviour {
 		}
 	}
 
-
 	public void LoadEconomicUnit(EuSavable savedEu)
 	{
 		GameObject newEu = Instantiate (euPrefab, this.gameObject.transform);
