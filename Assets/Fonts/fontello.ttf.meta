@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: c0f3e8903940b204b9eaefa4480ac2b4
+timeCreated: 1512510992
+licenseType: Pro
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: fontello
+  fontNames:
+  - fontello
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
