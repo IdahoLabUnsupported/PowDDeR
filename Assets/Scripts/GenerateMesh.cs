@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Vectrosity;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GenerateMesh : MonoBehaviour {
 
@@ -11,6 +12,7 @@ public class GenerateMesh : MonoBehaviour {
 	public Camera lineCam;
 	public GameObject menu;
 	public GenerationSettings settings;
+	public Slider slider;
 
 	static int MAX_VERTEX = 65000;
 	static int MAX_MESHES = 50;
@@ -67,12 +69,12 @@ public class GenerateMesh : MonoBehaviour {
 
 	public void onSliderChange()
 	{
-//		Slider slider = EventSystem.current.currentSelectedGameObject.GetComponent<Slider>();
-//
-//		if (slider != null) {
-//			drawLine (slider.value);
-//			slider.GetComponentInChildren<Text> ().text = slider.value.ToString ();
-//		}
+		Slider slider = EventSystem.current.currentSelectedGameObject.GetComponent<Slider>();
+
+		if (slider != null) {
+			drawLine (slider.value);
+			slider.GetComponentInChildren<Text> ().text = slider.value.ToString ();
+		}
 	}
 
 	public void onGenerateManifold()
@@ -94,10 +96,10 @@ public class GenerateMesh : MonoBehaviour {
 
 		int index;
 
-//		slider.maxValue = totalTimeSeconds;
-//		slider.minValue = 0;
-//		slider.value = (totalTimeSeconds / 2.0f);
-//		slider.GetComponentInChildren<Text> ().text = (totalTimeSeconds / 2.0f).ToString ();
+		slider.maxValue = totalTimeSeconds;
+		slider.minValue = 0;
+		slider.value = (totalTimeSeconds / 2.0f);
+		slider.GetComponentInChildren<Text> ().text = (totalTimeSeconds / 2.0f).ToString ();
 
 		bool first = true;
 
@@ -115,7 +117,7 @@ public class GenerateMesh : MonoBehaviour {
 			foreach (Transform listing in listingContainer) {
 
 				Asset asset = listing.GetComponent<Asset> ();
-				int qty = int.Parse(listing.GetComponent<InputField> ().text);
+				int qty = int.Parse(listing.GetComponentInChildren<InputField> ().text);
 
 				Debug.Log ("Processing Asset " + asset.aname + qty);
 
@@ -288,6 +290,7 @@ public class GenerateMesh : MonoBehaviour {
 			GameObject display = Instantiate (displayCube,displayCubeHolder);
 			display.GetComponent<MeshFilter> ().mesh.Clear ();
 			display.GetComponent<MeshFilter> ().mesh = meshBack [currentMesh];
+			display.GetComponent<Renderer>().material.SetColor ("_Color", settings.color);
 			displayCubeList.Add (display);
 
 			currentMesh++;
@@ -303,16 +306,30 @@ public class GenerateMesh : MonoBehaviour {
 		linePoints.Clear ();
 		stime = stime ?? totalTimeSeconds / 2.0f;
 
+		// save the start indices to close the line loop
+		int startCurrentIndex = -1;
+		int startMeshIndex = 0;
+
 		for (int i = 0; i < polarSteps; i++) {
 
-			int currentIndex = (int)Mathf.Clamp(stime.Value ,0.0f, totalTimeSeconds-1) * polarSteps * timeStepsPerSecond + i;
+			int currentIndex = (int)Mathf.Clamp(stime.Value ,0.0f, totalTimeSeconds-1) * (polarSteps) * timeStepsPerSecond + i;
 			int meshIndex = currentIndex / MAX_VERTEX;
 
 			//adjust current index to account for which mesh is being indexed
 			currentIndex = currentIndex - (meshIndex * MAX_VERTEX);
 
-			linePoints.Add (points [meshIndex][currentIndex]);
+			if (currentIndex < points [meshIndex].Count) {
+
+				if (startCurrentIndex == -1) {
+					startCurrentIndex = currentIndex;
+					startMeshIndex = meshIndex;
+				}
+
+				linePoints.Add (points [meshIndex] [currentIndex]);
+			}
 		}
+
+		linePoints.Add (points [startMeshIndex] [startCurrentIndex]);
 
 		line.color = Color.yellow;
 		line2d.color = Color.yellow;
