@@ -8,7 +8,7 @@ public class Loader : MonoBehaviour {
 	string path = "Assets/Resources/";
 	public EuAdder euAdder;
 	public AssetAdder assetAdder;
-	public GenerationSettings settings;
+	public SetGenerationSettings settings;
 	void Awake()
 	{
 		Load ();
@@ -39,17 +39,7 @@ public class Loader : MonoBehaviour {
 
 			} else if(info [i].Name.Contains ("settings") && !info [i].Extension.Contains ("meta")){
 
-				settings = JsonUtility.FromJson<GenerationSettings> (json);
-			}
-		}
-
-		// then load economic units
-		for (int i = 0; i < info.Length; i++) {
-			string json = File.ReadAllText (info[i].FullName);
-
-			if (info [i].Name.Contains ("eu") && !info [i].Extension.Contains ("meta")) {
-
-				euAdder.LoadEconomicUnit(JsonUtility.FromJson<EuSavable> (json));
+				settings.setSettings(JsonUtility.FromJson<GenerationSettings> (json));
 			}
 		}
 	}

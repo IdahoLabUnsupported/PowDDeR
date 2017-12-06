@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class GenerationSettings : MonoBehaviour {
+public class GenerationSettings {
 
 	public int totalTimeSeconds = 1700;
 	public int timeStepsPerSecond = 10;

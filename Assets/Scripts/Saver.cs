@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Saver : MonoBehaviour {
 	public GameObject assetContainer;
 	public GameObject euContainer;
-	public GenerationSettings settings;
+	public SetGenerationSettings settings;
 	string path = "Assets/Resources/";
 
 	public void save()
@@ -71,7 +71,7 @@ public class Saver : MonoBehaviour {
 		}
 
 		// save generation settings
-		jsonData = JsonUtility.ToJson(settings);
+		jsonData = JsonUtility.ToJson(settings.GetSettings());
 
 		//save Json string
 		File.WriteAllText(path+"settings",jsonData);

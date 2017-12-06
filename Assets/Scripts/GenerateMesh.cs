@@ -11,7 +11,7 @@ public class GenerateMesh : MonoBehaviour {
 	public int totalTimeSeconds = 1700, timeStepsPerSecond = 10, polarSteps = 100;
 	public Camera lineCam;
 	public GameObject menu;
-	public GenerationSettings settings;
+	public SetGenerationSettings settings;
 	public Slider slider;
 
 	static int MAX_VERTEX = 65000;
@@ -64,7 +64,7 @@ public class GenerateMesh : MonoBehaviour {
 
 	public void setColor(Color inColor)
 	{
-		settings.color = inColor;
+		settings.currentSettings.color = inColor;
 	}
 
 	public void onSliderChange()
@@ -86,9 +86,9 @@ public class GenerateMesh : MonoBehaviour {
 		mins = Vector3.zero;
 		maxs = Vector3.zero;
 
-		totalTimeSeconds = settings.totalTimeSeconds;
-		polarSteps = settings.polarSteps;
-		timeStepsPerSecond = settings.timeStepsPerSecond;
+		totalTimeSeconds = settings.currentSettings.totalTimeSeconds;
+		polarSteps = settings.currentSettings.polarSteps;
+		timeStepsPerSecond =settings.currentSettings.timeStepsPerSecond;
 
 		int count = 0;
 		int numMesh = 0;
@@ -290,7 +290,7 @@ public class GenerateMesh : MonoBehaviour {
 			GameObject display = Instantiate (displayCube,displayCubeHolder);
 			display.GetComponent<MeshFilter> ().mesh.Clear ();
 			display.GetComponent<MeshFilter> ().mesh = meshBack [currentMesh];
-			display.GetComponent<Renderer>().material.SetColor ("_Color", settings.color);
+			display.GetComponent<Renderer>().material.SetColor ("_Color", settings.currentSettings.color);
 			displayCubeList.Add (display);
 
 			currentMesh++;
