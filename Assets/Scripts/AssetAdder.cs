@@ -33,8 +33,9 @@ public class AssetAdder : MonoBehaviour {
 		assetComponent.maxP = savedAsset.maxP;
 		assetComponent.maxQ = savedAsset.maxQ;
 		assetComponent.energy = savedAsset.energy;
-		assetComponent.active = savedAsset.active;
 		assetComponent.nameIndex = savedAsset.nameIndex;
+
+		assetComponent.setActive(savedAsset.active);
 
 		newDevice.GetComponentInChildren<Text> ().text = savedAsset.aname;
 

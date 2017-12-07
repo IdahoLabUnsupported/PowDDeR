@@ -54,6 +54,7 @@ public class Saver : MonoBehaviour {
 			euSave.assets = new List<string> ();
 			euSave.qty = new List<int> ();
 			euSave.euname = eu.euname;
+			euSave.active = eu.active;
 
 			Transform listingContainer = child.Find ("Scroll View/Viewport/Content");
 

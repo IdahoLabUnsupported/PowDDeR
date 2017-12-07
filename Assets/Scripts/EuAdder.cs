@@ -27,8 +27,9 @@ public class EuAdder : MonoBehaviour {
 		euComponent.euname = savedEu.euname;
 		euComponent.latency = savedEu.latency;
 		euComponent.description = savedEu.description;
-
 		euComponent.GetComponentInChildren<Text> ().text = savedEu.euname;
+
+		euComponent.setActive (savedEu.active);
 
 		for (int i = 0; i < savedEu.assets.Count; i++) {
 			GameObject asset = GameObject.Find (savedEu.assets [i]);

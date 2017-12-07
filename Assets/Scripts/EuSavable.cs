@@ -9,4 +9,5 @@ public class EuSavable {
 	public List<int> qty;
 	public string euname;
 	public string description;
+	public bool active;
 }

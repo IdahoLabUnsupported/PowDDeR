@@ -14,7 +14,7 @@ public class Asset : MonoBehaviour {
 	public float maxP;
 	public float maxQ;
 	public float energy;
-	public bool active;
+	public bool active = true;
 
 	public class AssetChangeEvent : UnityEvent<string, GameObject, string> {} //empty class; just needs to exist
 
@@ -59,5 +59,19 @@ public class Asset : MonoBehaviour {
 		onChanged.Invoke(aname, null, null);
 
 		Destroy (this.gameObject);
+	}
+
+	public void toggleActiveAsset()
+	{
+		if (active != GetComponentInChildren<Toggle> ().isOn) {
+			active = !active;
+			onChanged.Invoke (aname, this.gameObject, aname);
+		}
+	}
+
+	public void setActive(bool isActive)
+	{
+		active = isActive;
+		GetComponentInChildren<Toggle> ().isOn = isActive;
 	}
 }

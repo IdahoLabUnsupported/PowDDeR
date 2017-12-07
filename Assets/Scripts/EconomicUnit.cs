@@ -12,6 +12,7 @@ public class EconomicUnit : MonoBehaviour {
 	public string euname;
 	public float latency;
 	public string description;
+	public bool active = true;
 
 	//the asset list from asset list
 	public Dictionary<string, Asset> assets = new Dictionary<string, Asset> ();
@@ -45,7 +46,7 @@ public class EconomicUnit : MonoBehaviour {
 		// register the deletion action 
 		newEuDevice.GetComponentInChildren<Button> ().onClick.AddListener (()=>deleteAsset(newEuDevice.GetComponentInChildren<Text> ().text ));
 
-		// set the qty
+		// set the qty if there is one
 		if (qty >= 0) {
 			newEuDevice.GetComponentInChildren<InputField> ().text = qty.ToString();
 		}
@@ -58,9 +59,15 @@ public class EconomicUnit : MonoBehaviour {
 	{
 		if (assetObjects.ContainsKey (assetName) && assets.ContainsKey (assetName)) {
 
+			assetObjects [assetName].GetComponent<Asset> ().onChanged.RemoveListener(updateAsset);
+			assets [assetName].onChanged.RemoveListener (updateAsset);
+
 			Destroy (assetObjects [assetName]);
+
 			assetObjects.Remove (assetName);
 			assets.Remove (assetName);
+
+
 		}
 	}
 
@@ -72,17 +79,43 @@ public class EconomicUnit : MonoBehaviour {
 	public void updateAsset(string aname, GameObject asset, string oldName)
 	{
 		if (aname != null) {
-			if (asset == null) {
-				deleteAsset (aname);
+			// if this asset is to be deleted
+//			if (asset == null) {
+//				deleteAsset (aname);
+//				// else if this is a rename , delete the old asset and create a new one without updating the quantity
+//			} else if(oldName != aname && oldName != null){
+//				deleteAsset (oldName);
+//				addAsset (ref asset, -1);
+//				// else one of the parameters are updated
+//			}else{
+//				assets [aname] = asset.GetComponent<Asset>();
+//				assetObjects [aname] = asset;
+//				deleteAsset (oldName);
+//				addAsset (ref asset, -1);
+//			}
 
-			} else if(oldName != aname && oldName != null){
-				deleteAsset (oldName);
-				addAsset (ref asset, -1);
-			}else{
-				assets [aname] = asset.GetComponent<Asset>();
-				assetObjects [aname] = asset;
+			int qty = int.Parse(assetObjects [aname].GetComponentInChildren<InputField>().text);
+
+			deleteAsset (aname);
+
+			if (asset != null) {
+				addAsset (ref asset, qty);
 			}
 		}
 	}
+
+	public void toggleActiveEu()
+	{
+		if (active != GetComponentInChildren<Toggle> ().isOn) {
+			active = !active;
+		}
+	}
+
+	public void setActive(bool isActive)
+	{
+		active = isActive;
+		GetComponentInChildren<Toggle> ().isOn = isActive;
+	}
+
 
 }

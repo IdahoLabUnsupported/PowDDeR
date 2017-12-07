@@ -1,1 +1,1 @@
-{"nameIndex":0,"aname":"n1","latency":200.0,"agilityP":2000.0,"agilityQ":2000.0,"maxP":20000.0,"maxQ":20000.0,"energy":20000000.0,"active":false}
+{"nameIndex":0,"aname":"n1","latency":200.0,"agilityP":2000.0,"agilityQ":2000.0,"maxP":20000.0,"maxQ":20000.0,"energy":20000000.0,"active":true}
