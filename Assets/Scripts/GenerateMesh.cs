@@ -111,6 +111,8 @@ public class GenerateMesh : MonoBehaviour {
 				continue;
 			}
 
+			float euLatency = child.GetComponent<EconomicUnit> ().latency;
+
 			Transform listingContainer = child.Find ("Scroll View/Viewport/Content");
 
 			// get the listing of assets
@@ -124,6 +126,8 @@ public class GenerateMesh : MonoBehaviour {
 				}
 
 				int qty = int.Parse(listing.GetComponentInChildren<InputField> ().text);
+
+				asset.latency += euLatency;
 
 				Debug.Log ("Processing Asset " + asset.aname + qty);
 
