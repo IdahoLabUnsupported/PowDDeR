@@ -399,7 +399,7 @@ public class GenerateMesh : MonoBehaviour {
 
 	// Update is called once per frame
 	void LateUpdate () {
-		if (line != null) {
+		if (line != null && line.points3.Count > 0) {
 			//line.drawTransform = display.transform;
 			line.Draw3D ();
 

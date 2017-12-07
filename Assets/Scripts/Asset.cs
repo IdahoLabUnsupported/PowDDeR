@@ -63,6 +63,8 @@ public class Asset : MonoBehaviour {
 
 	public void toggleActiveAsset()
 	{
+		// interesting thing, this gets called even when .isOn is set through scripting, as below
+		// the call back but just check if isOn changes and then calls this method
 		if (active != GetComponentInChildren<Toggle> ().isOn) {
 			active = !active;
 			onChanged.Invoke (aname, this.gameObject, aname);
