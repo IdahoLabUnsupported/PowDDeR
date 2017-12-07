@@ -4,46 +4,52 @@ using UnityEngine;
 using UnityEngine.UI;
 public class EuModalBehavior : MonoBehaviour {
 
-	EconomicUnit eu;
+	EconomicUnit euOrig;
 	GameObject euObj;
 	public EuModalController controller;
 	public InputField nameField;
 	public InputField descriptionField;
 	public InputField latencyField;
 
+	string euNameNew;
+	float euLatencyNew;
+	string euDescriptionNew;
 
 	public void SetEu(GameObject objWithEu) {
 		euObj = objWithEu;
-		eu = objWithEu.GetComponent<EconomicUnit>();
+		euOrig = objWithEu.GetComponent<EconomicUnit>();
 		populateFields ();
 	}
 
 	void populateFields()
 	{
-		nameField.text = eu.euname;
-		descriptionField.text = eu.description;
-		latencyField.text = eu.latency.ToString();
+		nameField.text = euOrig.euname;
+		descriptionField.text = euOrig.description;
+		latencyField.text = euOrig.latency.ToString();
 
 	}
 
 	public void setEuName(InputField euNameField)
 	{
-		eu.euname = euNameField.text;
+		euNameNew = euNameField.text;
 	}
 
 	public void setEuDescription(InputField descriptionField)
 	{
-		eu.description = descriptionField.text;
+		euDescriptionNew = descriptionField.text;
 	}
 
 	public void setEuLatency(InputField latencyField)
 	{
-		eu.latency = float.Parse (latencyField.text);
+		euLatencyNew = float.Parse (latencyField.text);
 	}
 
 	public void saveEconomicUnit()
 	{
-		euObj.GetComponent<EconomicUnit>().saveEu(eu);
+		euOrig.euname = euNameNew;
+		euOrig.latency = euLatencyNew;
+		euOrig.description = euDescriptionNew;
+		euObj.GetComponent<EconomicUnit>().saveEu(euOrig);
 		controller.HideModal ();
 	}
 
@@ -55,6 +61,7 @@ public class EuModalBehavior : MonoBehaviour {
 
 	public void cancelEu ()
 	{
+		
 		controller.HideModal ();	
 	}
 }

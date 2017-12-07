@@ -55,6 +55,7 @@ public class Saver : MonoBehaviour {
 			euSave.qty = new List<int> ();
 			euSave.euname = eu.euname;
 			euSave.active = eu.active;
+			euSave.latency = eu.latency;
 
 			Transform listingContainer = child.Find ("Scroll View/Viewport/Content");
 

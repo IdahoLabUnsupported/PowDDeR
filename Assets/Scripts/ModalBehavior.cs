@@ -16,6 +16,8 @@ public class ModalBehavior : MonoBehaviour {
 	public InputField maxQField;
 	public InputField energyField;
 
+	public AssetSavable assetEdit;
+
 	public void SetAsset(GameObject objWithAsset) {
 		assetObj = objWithAsset;
 		asset = objWithAsset.GetComponent<Asset>();
@@ -36,36 +38,44 @@ public class ModalBehavior : MonoBehaviour {
 
 	public void setAssetName(InputField assetNameField)
 	{
-		asset.aname = assetNameField.text;
+		assetEdit.aname = assetNameField.text;
 	}
 	public void setAssetLatency(InputField assetLatencyField)
 	{
-		asset.latency = float.Parse(assetLatencyField.text);
+		assetEdit.latency = float.Parse(assetLatencyField.text);
 	}
 	public void setAssetAgilityP(InputField assetAgilityPField)
 	{
-		asset.agilityP = float.Parse(assetAgilityPField.text);
+		assetEdit.agilityP = float.Parse(assetAgilityPField.text);
 	}
 	public void setAssetAgilityQ(InputField assetAgilityQField)
 	{
-		asset.agilityQ = float.Parse(assetAgilityQField.text);
+		assetEdit.agilityQ = float.Parse(assetAgilityQField.text);
 	}
 	public void setAssetMaxP(InputField assetMaxPField)
 	{
-		asset.maxP = float.Parse(assetMaxPField.text);
+		assetEdit.maxP = float.Parse(assetMaxPField.text);
 	}
 	public void setAssetMaxQ(InputField assetMaxQField)
 	{
-		asset.maxQ = float.Parse(assetMaxQField.text);
+		assetEdit.maxQ = float.Parse(assetMaxQField.text);
 	}
 	public void setAssetEnergy(InputField assetEnergyField)
 	{
-		asset.energy = float.Parse(assetEnergyField.text);
+		assetEdit.energy = float.Parse(assetEnergyField.text);
 	}
 
 
 	public void saveAsset()
 	{
+		asset.aname = assetEdit.aname;
+		asset.latency = assetEdit.latency;
+		asset.agilityP = assetEdit.agilityP;
+		asset.agilityQ = assetEdit.agilityQ;
+		asset.maxP = assetEdit.maxP;
+		asset.maxQ = assetEdit.maxQ;
+		asset.energy = assetEdit.energy;
+
 		assetObj.GetComponent<Asset>().saveAsset(asset);
 		controller.HideModal ();
 	}

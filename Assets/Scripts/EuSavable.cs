@@ -4,7 +4,7 @@ using UnityEngine;
 
 [System.Serializable]
 public class EuSavable {
-	public int latency;
+	public float latency;
 	public List<string> assets;
 	public List<int> qty;
 	public string euname;

@@ -94,9 +94,9 @@ public class EconomicUnit : MonoBehaviour {
 //				addAsset (ref asset, -1);
 //			}
 
-			int qty = int.Parse(assetObjects [aname].GetComponentInChildren<InputField>().text);
+			int qty = int.Parse(assetObjects [oldName].GetComponentInChildren<InputField>().text);
 
-			deleteAsset (aname);
+			deleteAsset (oldName);
 
 			if (asset != null) {
 				addAsset (ref asset, qty);
