@@ -117,6 +117,12 @@ public class GenerateMesh : MonoBehaviour {
 			foreach (Transform listing in listingContainer) {
 
 				Asset asset = listing.GetComponent<Asset> ();
+
+				// if this asset isn't active continue on
+				if (!asset.active) {
+					continue;
+				}
+
 				int qty = int.Parse(listing.GetComponentInChildren<InputField> ().text);
 
 				Debug.Log ("Processing Asset " + asset.aname + qty);
