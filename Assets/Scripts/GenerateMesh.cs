@@ -129,7 +129,7 @@ public class GenerateMesh : MonoBehaviour {
 
 				asset.latency += euLatency;
 
-				Debug.Log ("Processing Asset " + asset.aname + qty);
+				Debug.Log ("Processing Asset " + asset.aname + "qty: " + qty);
 
 				// for each quantity of this asset
 				for (int c = 0; c < qty; c++) {	
