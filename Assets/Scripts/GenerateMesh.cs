@@ -54,9 +54,9 @@ public class GenerateMesh : MonoBehaviour {
 		// handle line
 		VectorLine.SetCamera3D (lineCam);
 		linePoints = new List<Vector3>();
-		line = new VectorLine ("line", linePoints, 2.0f, LineType.Continuous);
+		line = new VectorLine ("line", linePoints, 7.0f, LineType.Continuous,Joins.Fill);
 		line.drawTransform = displayCube.transform;
-		line2d = new VectorLine ("line2d", linePoints, 2.0f, LineType.Continuous);
+		line2d = new VectorLine ("line2d", linePoints, 2.0f, LineType.Continuous, Joins.Fill);
 		GameObject.Find ("line").layer = 9;
 		GameObject.Find ("line2d").layer = 8;
 	}
@@ -65,6 +65,16 @@ public class GenerateMesh : MonoBehaviour {
 	public void setColor(Color inColor)
 	{
 		settings.currentSettings.color = inColor;
+	}
+
+	public void setBgColor(Color inColor)
+	{
+		settings.currentSettings.bgColor = inColor;
+	}
+
+	public void setLineColor(Color inColor)
+	{
+		settings.currentSettings.lineColor = inColor;
 	}
 
 	public void onSliderChange()
@@ -82,6 +92,10 @@ public class GenerateMesh : MonoBehaviour {
 		for (int i = 0; i < MAX_MESHES; i++) {
 			points [i].Clear();
 		}
+
+		//set the background color
+		Camera.main.backgroundColor = settings.currentSettings.bgColor;
+		lineCam.backgroundColor = settings.currentSettings.bgColor;
 
 		mins = Vector3.zero;
 		maxs = Vector3.zero;
@@ -127,8 +141,6 @@ public class GenerateMesh : MonoBehaviour {
 
 				int qty = int.Parse(listing.GetComponentInChildren<InputField> ().text);
 
-				asset.latency += euLatency;
-
 				Debug.Log ("Processing Asset " + asset.aname + "qty: " + qty);
 
 				// for each quantity of this asset
@@ -139,7 +151,7 @@ public class GenerateMesh : MonoBehaviour {
 					index = 0;
 					fieldCount = polarSteps;
 
-					List<Vector3> vertices = this.GetComponent<CalculateManifold> ().buildOneManifold (asset, totalTimeSeconds, timeStepsPerSecond, polarSteps);
+					List<Vector3> vertices = this.GetComponent<CalculateManifold> ().buildOneManifold(asset,totalTimeSeconds,timeStepsPerSecond, polarSteps, euLatency);
 
 					for (int i = 0; i < vertices.Count; i++) {
 
@@ -221,12 +233,8 @@ public class GenerateMesh : MonoBehaviour {
 	void createMesh()
 	{
 
-		//clear out old meshes
-		foreach (GameObject item in displayCubeList) {
-			Destroy (item);
-		}
 
-		displayCube.GetComponent<Renderer> ().enabled = true;
+		displayCube.GetComponent<Renderer>().enabled = true;
 
 		int currentMesh = 0;
 
@@ -287,7 +295,7 @@ public class GenerateMesh : MonoBehaviour {
 			meshBack[currentMesh] = new Mesh();
 			meshBack[currentMesh].SetVertices (points[currentMesh]);
 
-			meshBack[currentMesh].colors = colors;
+			//meshBack[currentMesh].colors = colors;
 
 			// generate mesh
 			meshBack[currentMesh].triangles = triangles;
@@ -297,7 +305,7 @@ public class GenerateMesh : MonoBehaviour {
 			//generate points
 			//meshBack[currentMesh].SetIndices (indecies, MeshTopology.Points, 0);
 
-			GameObject display = Instantiate (displayCube,displayCubeHolder);
+			GameObject display = Instantiate (displayCube, displayCubeHolder);
 			display.GetComponent<MeshFilter> ().mesh.Clear ();
 			display.GetComponent<MeshFilter> ().mesh = meshBack [currentMesh];
 			display.GetComponent<Renderer>().material.SetColor ("_Color", settings.currentSettings.color);
@@ -341,8 +349,8 @@ public class GenerateMesh : MonoBehaviour {
 
 		linePoints.Add (points [startMeshIndex] [startCurrentIndex]);
 
-		line.color = Color.yellow;
-		line2d.color = Color.yellow;
+		line.color = new Color(settings.currentSettings.lineColor.r, settings.currentSettings.lineColor.g, settings.currentSettings.lineColor.b, 1);
+		line2d.color = new Color(settings.currentSettings.lineColor.r, settings.currentSettings.lineColor.g, settings.currentSettings.lineColor.b, 1);
 		//line.drawTransform = displayCube.transform;
 	}
 
@@ -394,6 +402,12 @@ public class GenerateMesh : MonoBehaviour {
 
 	public void showMenu()
 	{
+		//clear out old meshes
+		foreach (GameObject item in displayCubeList) {
+			Destroy (item);
+		}
+
+		displayCubeList.Clear ();
 		menu.SetActive (true);
 	}
 

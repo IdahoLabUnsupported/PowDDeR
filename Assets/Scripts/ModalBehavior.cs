@@ -16,6 +16,7 @@ public class ModalBehavior : MonoBehaviour {
 	public InputField maxQField;
 	public InputField energyField;
 
+	// temporary holder for edited values
 	public AssetSavable assetEdit;
 
 	public void SetAsset(GameObject objWithAsset) {

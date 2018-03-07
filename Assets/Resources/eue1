@@ -1,1 +1,1 @@
-{"latency":1000.0,"assets":["n1"],"qty":[2],"euname":"e1","description":"","active":true}
+{"latency":1000.0,"assets":["n1","ty"],"qty":[2,1],"euname":"e1","description":"","active":true}

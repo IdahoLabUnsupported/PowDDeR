@@ -22,11 +22,16 @@ public class CalculateManifold : MonoBehaviour {
 		return pointsLine;
 	}
 
-	public List<Vector3> buildOneManifold(Asset asset, int totalTimeSeconds, int timeStepsPerSecond, int polarSteps)
+	public List<Vector3> buildOneManifold(Asset asset, int totalTimeSeconds, int timeStepsPerSecond, int polarSteps, float euLatency)
 	{
 		points.Clear ();
+		Pt.Clear ();
+		Qt.Clear ();
 		this.polarSteps = polarSteps;
 		this.timeStepsPerSecond = timeStepsPerSecond;
+
+		// new latency with added eu
+		float latency = asset.latency + euLatency;
 
 		//grid size for mesh point generation
 		float incrementT = 1.0f/(float)timeStepsPerSecond;
@@ -48,21 +53,21 @@ public class CalculateManifold : MonoBehaviour {
 			Pt.Add (0.0f);
 			Qt.Add (0.0f);
 			// if time hasn't reached latency time set to 0
-			if (currentTime < asset.latency) {
+			if (currentTime < latency) {
 				Pt [i] = 0.0f;
 				Qt [i] = 0.0f;
 			} else {
 
 				//handle p agility
-				if (currentTime < (asset.latency + asset.agilityP)) {
-					Pt [i] = asset.maxP * (currentTime - asset.latency) / asset.agilityP;
+				if (currentTime < (latency + asset.agilityP)) {
+					Pt [i] = asset.maxP * (currentTime - latency) / asset.agilityP;
 				} else {
 					Pt [i] = asset.maxP;
 				}
 
 				// handle q agility
-				if (currentTime < (asset.latency + asset.agilityQ)) {
-					Qt [i] = asset.maxQ * (currentTime - asset.latency) / asset.agilityQ;			
+				if (currentTime < (latency + asset.agilityQ)) {
+					Qt [i] = asset.maxQ * (currentTime - latency) / asset.agilityQ;			
 				} else {
 					Qt [i] = asset.maxQ;
 				}

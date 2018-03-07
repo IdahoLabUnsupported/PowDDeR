@@ -12,8 +12,12 @@ public class SettingsModalBehavior : MonoBehaviour {
 	public InputField timeStepsField;
 	public InputField polarStepsField;
 	public ColorPicker colorPicker;
+	public ColorPicker colorPickerBg;
+	public ColorPicker colorPickerLine;
 
 	bool updateColorPicker = false;
+	bool updateColorPickerBg = false;
+	bool updateColorPickerLine = false;
 
 	public void populateFields()
 	{
@@ -21,9 +25,21 @@ public class SettingsModalBehavior : MonoBehaviour {
 		timeStepsField.text = settings.currentSettings.timeStepsPerSecond.ToString();
 		polarStepsField.text = settings.currentSettings.polarSteps.ToString();
 		colorPicker.color = settings.currentSettings.color;
+		if (settings.currentSettings.bgColor != null) {
+			colorPickerBg.color = settings.currentSettings.bgColor;
+		} else {
+			colorPickerBg.color = Color.black;
+		}
 
+		if (settings.currentSettings.lineColor != null) {
+			colorPickerLine.color = settings.currentSettings.lineColor;
+		} else {
+			colorPickerLine.color = Color.yellow;
+		}
 		// apparently to update color picker, it has to happen in late update
 		updateColorPicker = true;
+		updateColorPickerBg = true;
+		updateColorPickerLine = true;
 	}
 
 	public void setTotalTime(InputField totalTimeField)
@@ -49,6 +65,14 @@ public class SettingsModalBehavior : MonoBehaviour {
 		if (updateColorPicker) {
 			colorPicker.UpdateUI ();
 			updateColorPicker = false;
+		}
+		if (updateColorPickerBg) {
+			colorPickerBg.UpdateUI ();
+			updateColorPickerBg = false;
+		}
+		if (updateColorPickerLine) {
+			colorPickerBg.UpdateUI ();
+			updateColorPickerLine = false;
 		}
 	}
 }

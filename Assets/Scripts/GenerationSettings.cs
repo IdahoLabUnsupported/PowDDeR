@@ -9,4 +9,6 @@ public class GenerationSettings {
 	public int timeStepsPerSecond = 10;
 	public int polarSteps = 100;
 	public Color color;
+	public Color bgColor;
+	public Color lineColor;
 }
