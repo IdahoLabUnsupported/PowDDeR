@@ -16,7 +16,14 @@ public class Loader : MonoBehaviour {
 
 	public void Load()
 	{
-		DirectoryInfo directory = new DirectoryInfo (path);
+		DirectoryInfo directory;
+
+		if (!Directory.Exists (path)) {
+			directory = Directory.CreateDirectory (path);
+		} else {
+			directory = new DirectoryInfo (path);
+		}
+
 		FileInfo[] info = directory.GetFiles ();
 
 		//sort by file name

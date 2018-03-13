@@ -15,6 +15,7 @@ public class ModalBehavior : MonoBehaviour {
 	public InputField maxPField;
 	public InputField maxQField;
 	public InputField energyField;
+	public Toggle activeToggle;
 
 	// temporary holder for edited values
 	public AssetSavable assetEdit;
@@ -22,6 +23,7 @@ public class ModalBehavior : MonoBehaviour {
 	public void SetAsset(GameObject objWithAsset) {
 		assetObj = objWithAsset;
 		asset = objWithAsset.GetComponent<Asset>();
+	
 		populateFields ();
 	}
 
@@ -34,6 +36,7 @@ public class ModalBehavior : MonoBehaviour {
 		maxPField.text = asset.maxP.ToString();
 		maxQField.text = asset.maxQ.ToString();
 		energyField.text = asset.energy.ToString();
+		activeToggle.isOn = asset.active;
 	}
 
 
@@ -65,6 +68,10 @@ public class ModalBehavior : MonoBehaviour {
 	{
 		assetEdit.energy = float.Parse(assetEnergyField.text);
 	}
+	public void setAssetActive(bool assetActive)
+	{
+		assetEdit.active = assetActive;
+	}
 
 
 	public void saveAsset()
@@ -76,8 +83,10 @@ public class ModalBehavior : MonoBehaviour {
 		asset.maxP = assetEdit.maxP;
 		asset.maxQ = assetEdit.maxQ;
 		asset.energy = assetEdit.energy;
+		asset.active = activeToggle.isOn;
 
 		assetObj.GetComponent<Asset>().saveAsset(asset);
+		assetObj.GetComponentInChildren<Toggle> ().isOn = asset.active;
 		controller.HideModal ();
 	}
 

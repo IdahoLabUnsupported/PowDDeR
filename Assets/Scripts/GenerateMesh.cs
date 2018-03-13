@@ -5,6 +5,8 @@ using Vectrosity;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+//generate screen shot
+
 public class GenerateMesh : MonoBehaviour {
 
 	public GameObject euContainer;
@@ -65,16 +67,29 @@ public class GenerateMesh : MonoBehaviour {
 	public void setColor(Color inColor)
 	{
 		settings.currentSettings.color = inColor;
+
+		//set the object color
+		foreach(GameObject display in displayCubeList)
+		{
+			display.GetComponent<Renderer>().material.SetColor ("_Color", settings.currentSettings.color);
+		}
 	}
 
 	public void setBgColor(Color inColor)
 	{
 		settings.currentSettings.bgColor = inColor;
+
+		//set the background color
+		Camera.main.backgroundColor = settings.currentSettings.bgColor;
+		lineCam.backgroundColor = settings.currentSettings.bgColor;
 	}
 
 	public void setLineColor(Color inColor)
 	{
 		settings.currentSettings.lineColor = inColor;
+
+		//redraw the line with the new color, have to redraw due to limitation of vectrocity.
+		drawLine (slider.value);
 	}
 
 	public void onSliderChange()
@@ -321,6 +336,10 @@ public class GenerateMesh : MonoBehaviour {
 	public void drawLine(float? stime = null)
 	{
 
+		if (points[0].Count < 1) {
+			return;
+		}
+
 		linePoints.Clear ();
 		stime = stime ?? totalTimeSeconds / 2.0f;
 
@@ -352,6 +371,14 @@ public class GenerateMesh : MonoBehaviour {
 		line.color = new Color(settings.currentSettings.lineColor.r, settings.currentSettings.lineColor.g, settings.currentSettings.lineColor.b, 1);
 		line2d.color = new Color(settings.currentSettings.lineColor.r, settings.currentSettings.lineColor.g, settings.currentSettings.lineColor.b, 1);
 		//line.drawTransform = displayCube.transform;
+	}
+
+	public void updateObjectColor()
+	{
+		foreach(GameObject display in displayCubeList)
+		{
+			display.GetComponent<Renderer>().material.SetColor ("_Color", settings.currentSettings.color);
+		}
 	}
 
 	public Vector3 normalizePoints(Vector3 point)

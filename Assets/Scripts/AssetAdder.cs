@@ -10,7 +10,7 @@ public class AssetAdder : MonoBehaviour {
 	public void AddAsset()
 	{
 		GameObject newDevice = Instantiate (devicePrefab, transform);
-
+		newDevice.GetComponent<Asset> ().active = true;
 		//open modal window linking new prefab 
 		modalController.ShowModal(newDevice, true);
 

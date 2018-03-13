@@ -1,0 +1,55 @@
+Initialize engine version: 5.5.2p2 (03f34082a9c0)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA Quadro M5000M (ID=0x13f8)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   21.21.13.6972
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\Vectrosity.dll (this message is harmless)
+Loading C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\Vectrosity.dll into Unity Child Domain
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\uCPf.dll (this message is harmless)
+Loading C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\uCPf.dll into Unity Child Domain
+- Completed reload, in  0.025 seconds
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\SZEWTG\Documents\metricstool2\build\build_Data\Managed\System.dll (this message is harmless)
+desktop: 2560x1440 59Hz; virtual: 5120x1440 at 0,0
+<RI> Initializing input.
+XInput1_3.dll not found. Trying XInput9_1_0.dll instead...
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 2.866961 ms
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 2d9a0 -> priority: 1 
+  Thread -> id: 2e6c0 -> priority: 1 
+Processing Asset testqty: 1
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Mins (-1.0, -1.0, 0.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Maxs (1.0, 1.0, 1699.6)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Count 1700000
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Number of meshes needed 26
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+

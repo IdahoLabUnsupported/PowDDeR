@@ -11,7 +11,7 @@ public class EuAdder : MonoBehaviour {
 	public void AddEconomicUnit()
 	{
 		GameObject newEu = Instantiate (euPrefab, this.gameObject.transform);
-
+		newEu.GetComponent<EconomicUnit> ().active = true;
 		if (euModalController != null) {
 			//open modal window linking new prefab 
 			euModalController.ShowModal (newEu, true);
