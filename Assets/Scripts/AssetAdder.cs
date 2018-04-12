@@ -34,6 +34,13 @@ public class AssetAdder : MonoBehaviour {
 		assetComponent.maxQ = savedAsset.maxQ;
 		assetComponent.energy = savedAsset.energy;
 		assetComponent.nameIndex = savedAsset.nameIndex;
+		assetComponent.alpha1 = savedAsset.alpha1;
+		assetComponent.alpha2 = savedAsset.alpha2;
+		assetComponent.alpha3 = savedAsset.alpha3;
+
+		assetComponent.beta1 = savedAsset.beta1;
+		assetComponent.beta2 = savedAsset.beta2;
+		assetComponent.beta3 = savedAsset.beta3;
 
 		assetComponent.setActive(savedAsset.active);
 

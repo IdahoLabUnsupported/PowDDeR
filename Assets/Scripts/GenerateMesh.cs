@@ -281,14 +281,16 @@ public class GenerateMesh : MonoBehaviour {
 					triangles [j*12/2 + 1] = j + 1;
 					triangles [j*12/2 + 2] = j + fieldCount;
 
+
 					triangles [j*12/2 + 3] = j + 1;
 					triangles [j*12/2 + 4] = j + 1 + fieldCount;
 					triangles [j*12/2 + 5] = j + fieldCount;
+
 				}
 
 				// if this is at the end of a band, close the loop and increment to the next band
 				if (j == (bandCount*(fieldCount) - 1)) {
-
+					
 					// if this isn't the very last band
 					if ((j + fieldCount) < numPoints) {
 						//front side
@@ -299,11 +301,42 @@ public class GenerateMesh : MonoBehaviour {
 						triangles [j * 12 / 2 + 3] = j;
 						triangles [j * 12 / 2 + 4] = j + 1;
 						triangles [j * 12 / 2 + 5] = j + fieldCount - 1;
-					}
-
-					bandCount++;
+						}
+					
 				}
 
+//				//if this is not the last row of points and not at the end of a band
+//				if((j+fieldCount + 1)<numPoints)
+//				{
+//
+//					//front side
+//					triangles [j*6] = j;
+//					triangles [j*6 + 1] = j + 1;
+//					triangles [j*6 + 2] = j + fieldCount;
+//
+//					triangles [j*6 + 3] = j + 1;
+//					triangles [j*6 + 4] = j + 1 + fieldCount;
+//					triangles [j*6 + 5] = j + fieldCount;
+//				}
+//
+//				// if this is at the end of a band, close the loop and increment to the next band
+//				if (j == (bandCount*(fieldCount))-1) {
+//
+////					// if this isn't the very last band
+////					if ((j + fieldCount) < numPoints) {
+////						//front side
+////						triangles [j * 6] = j;
+////						triangles [j * 6 + 1] = j - (fieldCount - 1);
+////						triangles [j * 6 + 2] = j + 1;
+////
+////						triangles [j * 6 + 3] = j;
+////						triangles [j * 6 + 4] = j + 1;
+////						triangles [j * 6 + 5] = j + fieldCount - 1;
+////					}
+////
+//					bandCount++;
+//				}
+//
 			}
 
 

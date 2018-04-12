@@ -15,4 +15,10 @@ public class AssetSavable{
 	public float energy;
 	public bool active;
 
+
+	//Beta3*s^2+Beta2*s+Beta1
+	//-----------------------
+	//Alpha3*s^2+Alpha2*s+Alpha1
+	public float alpha1,alpha2,alpha3;
+	public float beta1,beta2,beta3;
 }

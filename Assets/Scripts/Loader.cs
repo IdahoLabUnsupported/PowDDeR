@@ -4,11 +4,14 @@ using UnityEngine;
 using System.IO;
 using System;
 
+
 public class Loader : MonoBehaviour {
 	string path = "Assets/Resources/";
 	public EuAdder euAdder;
 	public AssetAdder assetAdder;
 	public SetGenerationSettings settings;
+	public IGCAPTReader xmlReader;
+
 	void Awake()
 	{
 		Load ();
@@ -31,7 +34,19 @@ public class Loader : MonoBehaviour {
 			return f1.Name.CompareTo(f2.Name);
 		});
 
+		//search for XML file first, and if found skip the other files
+		bool foundXml = false;
 		for (int i = 0; i < info.Length; i++) {
+			if(info [i].Name.Contains ("fileconfig")&& !info [i].Extension.Contains ("meta"))
+			{
+				List<IGCAPTReader> components = new List<IGCAPTReader> ();
+				xmlReader.loadIGCAPNetwork (path+info[i].Name, components);
+				foundXml = true;
+				break;
+			}
+		}
+
+		for (int i = 0; i < info.Length && !foundXml; i++) {
 			string json = File.ReadAllText (info[i].FullName);
 
 			if(info [i].Name.Contains ("device")&& !info [i].Extension.Contains ("meta"))
