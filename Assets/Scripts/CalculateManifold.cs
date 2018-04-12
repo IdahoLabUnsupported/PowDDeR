@@ -78,6 +78,9 @@ public class CalculateManifold : MonoBehaviour {
 
 		float maxS = Mathf.Max (asset.maxP, asset.maxQ);
 
+		// the calculated point
+		Vector3 point = Vector3.zero;
+
 		List<Vector2> linePoints = new List<Vector2> ();
 
 		for (int i = 0; i < maxCountT; i++) {
@@ -119,10 +122,11 @@ public class CalculateManifold : MonoBehaviour {
 //				linePoints.Add(new Vector2(currentTime, (float)Laplace.gwr (this.f, (double)currentTime,10)));
 //			}
 
+			currentPolar = 0.0f;
+
 			for (int j = 0; j < maxCountP; j++) {
 
-				// the calculated point
-				Vector3 point = Vector3.zero;
+
 
 				point.z = currentTime;
 
