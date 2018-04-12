@@ -247,9 +247,12 @@ public class GenerateMesh : MonoBehaviour {
 
 	void createMesh()
 	{
+		//clear out old meshes
+		foreach (GameObject item in displayCubeList) {
+			Destroy (item);
+		}
 
-
-		displayCube.GetComponent<Renderer>().enabled = true;
+		displayCube.GetComponent<Renderer> ().enabled = true;
 
 		int currentMesh = 0;
 
@@ -273,34 +276,34 @@ public class GenerateMesh : MonoBehaviour {
 				colors [j] = Color.red;
 
 				//if this is not the last row of points and not at the end of a band
-				if((j+fieldCount + 1)<numPoints)
+				if((j+fieldCount + 1)<numPoints && (j != (bandCount*(fieldCount) - 1)))
 				{
 
 					//front side
-					triangles [j*6] = j;
-					triangles [j*6 + 1] = j + 1;
-					triangles [j*6 + 2] = j + fieldCount;
+					triangles [j*12/2] = j;
+					triangles [j*12/2 + 1] = j + 1;
+					triangles [j*12/2 + 2] = j + fieldCount;
 
-					triangles [j*6 + 3] = j + 1;
-					triangles [j*6 + 4] = j + 1 + fieldCount;
-					triangles [j*6 + 5] = j + fieldCount;
+					triangles [j*12/2 + 3] = j + 1;
+					triangles [j*12/2 + 4] = j + 1 + fieldCount;
+					triangles [j*12/2 + 5] = j + fieldCount;
 				}
 
 				// if this is at the end of a band, close the loop and increment to the next band
-				if (j == (bandCount*(fieldCount))-1) {
+				if (j == (bandCount*(fieldCount) - 1)) {
 
-//					// if this isn't the very last band
-//					if ((j + fieldCount) < numPoints) {
-//						//front side
-//						triangles [j * 6] = j;
-//						triangles [j * 6 + 1] = j - (fieldCount - 1);
-//						triangles [j * 6 + 2] = j + 1;
-//
-//						triangles [j * 6 + 3] = j;
-//						triangles [j * 6 + 4] = j + 1;
-//						triangles [j * 6 + 5] = j + fieldCount - 1;
-//					}
-//
+					// if this isn't the very last band
+					if ((j + fieldCount) < numPoints) {
+						//front side
+						triangles [j * 12 / 2] = j;
+						triangles [j * 12 / 2 + 1] = j - (fieldCount - 1);
+						triangles [j * 12 / 2 + 2] = j + 1;
+
+						triangles [j * 12 / 2 + 3] = j;
+						triangles [j * 12 / 2 + 4] = j + 1;
+						triangles [j * 12 / 2 + 5] = j + fieldCount - 1;
+					}
+
 					bandCount++;
 				}
 
@@ -310,7 +313,7 @@ public class GenerateMesh : MonoBehaviour {
 			meshBack[currentMesh] = new Mesh();
 			meshBack[currentMesh].SetVertices (points[currentMesh]);
 
-			//meshBack[currentMesh].colors = colors;
+			meshBack[currentMesh].colors = colors;
 
 			// generate mesh
 			meshBack[currentMesh].triangles = triangles;
@@ -320,7 +323,7 @@ public class GenerateMesh : MonoBehaviour {
 			//generate points
 			//meshBack[currentMesh].SetIndices (indecies, MeshTopology.Points, 0);
 
-			GameObject display = Instantiate (displayCube, displayCubeHolder);
+			GameObject display = Instantiate (displayCube,displayCubeHolder);
 			display.GetComponent<MeshFilter> ().mesh.Clear ();
 			display.GetComponent<MeshFilter> ().mesh = meshBack [currentMesh];
 			display.GetComponent<Renderer>().material.SetColor ("_Color", settings.currentSettings.color);
