@@ -65,12 +65,19 @@ public class CalculateManifold : MonoBehaviour {
 //		beta2 = asset.beta2;
 //		beta1 = asset.beta1;
 
-		pdenom [2] = 5000.5;
-		pdenom [1] = 1000.1;
+		pdenom [2] = asset.palpha1;
+		pdenom [1] = asset.palpha2;
 		pdenom [0] = asset.palpha3;
-		pnumer [2] = 30.0;
-		pnumer [1] = 1.0;
-		pnumer [0] = 0.0;
+		pnumer [2] = asset.pbeta1;
+		pnumer [1] = asset.pbeta2;
+		pnumer [0] = asset.pbeta3;
+
+		qdenom [2] = asset.qalpha1;
+		qdenom [1] = asset.qalpha2;
+		qdenom [0] = asset.qalpha3;
+		qnumer [2] = asset.qbeta1;
+		qnumer [1] = asset.qbeta2;
+		qnumer [0] = asset.qbeta3;
 
 		// new latency with added eu
 		float latency = asset.latency + euLatency;
