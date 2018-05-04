@@ -307,13 +307,23 @@ public class IGCAPTReader : MonoBehaviour {
 					newAsset.latency = float.Parse(compNode.SelectSingleNode("latency").InnerText);
 					newAsset.energy = float.Parse(compNode.SelectSingleNode("energy").InnerText);
 
-					newAsset.alpha1 = float.Parse (compNode.SelectSingleNode ("scoef1").InnerText);
-					newAsset.alpha2 = float.Parse (compNode.SelectSingleNode ("scoef2").InnerText);
-					newAsset.alpha3 = float.Parse (compNode.SelectSingleNode ("scoef3").InnerText);
+					if (compNode.SelectSingleNode ("pacoef1") != null && compNode.SelectSingleNode ("qacoef1") != null) {
+						newAsset.palpha1 = float.Parse (compNode.SelectSingleNode ("pacoef1").InnerText);
+						newAsset.palpha2 = float.Parse (compNode.SelectSingleNode ("pacoef2").InnerText);
+						newAsset.palpha3 = float.Parse (compNode.SelectSingleNode ("pacoef3").InnerText);
 
-					newAsset.beta1 = float.Parse (compNode.SelectSingleNode ("bcoef1").InnerText);
-					newAsset.beta2 = float.Parse (compNode.SelectSingleNode ("bcoef2").InnerText);
-					newAsset.beta3 = float.Parse (compNode.SelectSingleNode ("bcoef3").InnerText);
+						newAsset.pbeta1 = float.Parse (compNode.SelectSingleNode ("pbcoef1").InnerText);
+						newAsset.pbeta2 = float.Parse (compNode.SelectSingleNode ("pbcoef2").InnerText);
+						newAsset.pbeta3 = float.Parse (compNode.SelectSingleNode ("pbcoef3").InnerText);
+
+						newAsset.qalpha1 = float.Parse (compNode.SelectSingleNode ("qacoef1").InnerText);
+						newAsset.qalpha2 = float.Parse (compNode.SelectSingleNode ("qacoef2").InnerText);
+						newAsset.qalpha3 = float.Parse (compNode.SelectSingleNode ("qacoef3").InnerText);
+
+						newAsset.qbeta1 = float.Parse (compNode.SelectSingleNode ("qbcoef1").InnerText);
+						newAsset.qbeta2 = float.Parse (compNode.SelectSingleNode ("qbcoef2").InnerText);
+						newAsset.qbeta3 = float.Parse (compNode.SelectSingleNode ("qbcoef3").InnerText);
+					}
 
 					//create and add the unity game object
 					assetAdder.LoadAsset (newAsset);

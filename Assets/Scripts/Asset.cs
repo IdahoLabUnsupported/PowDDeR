@@ -19,8 +19,14 @@ public class Asset : MonoBehaviour {
 	//Beta3*s^2+Beta2*s+Beta1
 	//-----------------------
 	//Alpha3*s^2+Alpha2*s+Alpha1
-	public float alpha1,alpha2,alpha3;
-	public float beta1,beta2,beta3;
+	public float palpha1,palpha2,palpha3;
+	public float pbeta1,pbeta2,pbeta3;
+
+	//Beta3*s^2+Beta2*s+Beta1
+	//-----------------------
+	//Alpha3*s^2+Alpha2*s+Alpha1
+	public float qalpha1,qalpha2,qalpha3;
+	public float qbeta1,qbeta2,qbeta3;
 
 	public class AssetChangeEvent : UnityEvent<string, GameObject, string> {} //empty class; just needs to exist
 
@@ -56,13 +62,21 @@ public class Asset : MonoBehaviour {
 		energy = asset.energy;
 		active = asset.active;
 		nameIndex = asset.nameIndex;
-		alpha1 = asset.alpha1;
-		alpha2 = asset.alpha2;
-		alpha3 = asset.alpha3;
-		beta1 = asset.beta1;
-		beta2 = asset.beta2;
-		beta3 = asset.beta3;
 
+		palpha1 = asset.palpha1;
+		palpha2 = asset.palpha2;
+		palpha3 = asset.palpha3;
+		pbeta1 = asset.pbeta1;
+		pbeta2 = asset.pbeta2;
+		pbeta3 = asset.pbeta3;
+
+		qalpha1 = asset.qalpha1;
+		qalpha2 = asset.qalpha2;
+		qalpha3 = asset.qalpha3;
+		qbeta1 = asset.qbeta1;
+		qbeta2 = asset.qbeta2;
+		qbeta3 = asset.qbeta3;
+	
 		GetComponentInChildren<Text> ().text = aname;
 	}
 

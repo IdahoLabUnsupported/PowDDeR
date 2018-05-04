@@ -51,17 +51,26 @@ public class CalculateManifold : MonoBehaviour {
 		this.polarSteps = polarSteps;
 		this.timeStepsPerSecond = timeStepsPerSecond;
 
+		double[] pnumer = new double[3];
+		double[] pdenom = new double[3];
+
+		double[] qnumer = new double[3];
+		double[] qdenom = new double[3];
+
 		//set the alpha and betas
-		alpha3 = asset.alpha3;
-		alpha2 = asset.alpha2;
-		alpha1 = asset.alpha1;
-		beta3 = asset.beta3;
-		beta2 = asset.beta2;
-		beta1 = asset.beta1;
+//		alpha3 = asset.alpha3;
+//		alpha2 = asset.alpha2;
+//		alpha1 = asset.alpha1;
+//		beta3 = asset.beta3;
+//		beta2 = asset.beta2;
+//		beta1 = asset.beta1;
 
-		Laplace.InitStehfest (64);
-
-
+		pdenom [2] = 5000.5;
+		pdenom [1] = 1000.1;
+		pdenom [0] = asset.palpha3;
+		pnumer [2] = 30.0;
+		pnumer [1] = 1.0;
+		pnumer [0] = 0.0;
 
 		// new latency with added eu
 		float latency = asset.latency + euLatency;
@@ -86,6 +95,7 @@ public class CalculateManifold : MonoBehaviour {
 		for (int i = 0; i < maxCountT; i++) {
 //			PTransfer.Add(laplace.InverseTransform (this.f, i));
 //
+
 			Pt.Add (0.0f);
 			Qt.Add (0.0f);
 			// if time hasn't reached latency time set to 0
@@ -94,18 +104,33 @@ public class CalculateManifold : MonoBehaviour {
 				Qt [i] = 0.0f;
 			} else {
 
-				//handle p agility
-				if (currentTime < (latency + asset.agilityP)) {
-					Pt [i] = asset.maxP * (currentTime - latency) / asset.agilityP;
+				if (pnumer [0] == 0.0 && pnumer [1] == 0.0 && pnumer [2] == 0.0 && pdenom [0] == 0.0 &&  pdenom [1] == 0.0 && pdenom [2] == 0.0) {
+
+					//handle p agility
+					if (currentTime < (latency + asset.agilityP)) {
+						Pt [i] = asset.maxP * (currentTime - latency) / asset.agilityP;
+					} else {
+						Pt [i] = asset.maxP;
+					}
 				} else {
-					Pt [i] = asset.maxP;
+					//handle p transfer function
+					Pt [i] = asset.maxP * (float)(Laplace.InverseTransform2 (pnumer, pdenom, currentTime-latency));
+
 				}
 
-				// handle q agility
-				if (currentTime < (latency + asset.agilityQ)) {
-					Qt [i] = asset.maxQ * (currentTime - latency) / asset.agilityQ;			
+
+				if (qnumer [0] == 0.0 && qnumer [1] == 0.0 && qnumer [2] == 0.0 && qdenom [0] == 0.0 &&  qdenom [1] == 0.0 && qdenom [2] == 0.0) {
+
+					// handle q agility
+					if (currentTime < (latency + asset.agilityQ)) {
+						Qt [i] = asset.maxQ * (currentTime - latency) / asset.agilityQ;			
+					} else {
+						Qt [i] = asset.maxQ;
+					}
 				} else {
-					Qt [i] = asset.maxQ;
+					//handle q transfer function
+					Qt [i] = asset.maxQ * (float)(Laplace.InverseTransform2 (qnumer, qdenom, currentTime-latency));
+
 				}
 			}
 
@@ -117,16 +142,14 @@ public class CalculateManifold : MonoBehaviour {
 //
 //			currentPolar = 0.0f;
 //			float test =  (float)Laplace.gwr (this.f, (double)300, 380);
-//			if (linePoints.Count <= 16380) {
-//			//	linePoints.Add(new Vector2(currentTime, (float)Laplace.InverseTransform (this.f, (double)currentTime)));
-//				linePoints.Add(new Vector2(currentTime, (float)Laplace.gwr (this.f, (double)currentTime,10)));
-//			}
+			if (linePoints.Count <= 16380) {
+			//	linePoints.Add(new Vector2(currentTime, (float)Laplace.InverseTransform (this.f, (double)currentTime)));
+				linePoints.Add(new Vector2(currentTime, (float)(asset.maxP * Laplace.InverseTransform2 (pnumer, pdenom, currentTime))));
+			}
 
 			currentPolar = 0.0f;
 
 			for (int j = 0; j < maxCountP; j++) {
-
-
 
 				point.z = currentTime;
 
@@ -197,6 +220,7 @@ public class CalculateManifold : MonoBehaviour {
 					if ((Mathf.Abs (sumIt * incrementT) > asset.energy) || maxedOut) {
 						Vector3 tempPoint = points [j*maxCountP + i];
 						tempPoint.x = 0.0f;
+						tempPoint.y = 0.0f;
 						points [j*maxCountP + i] = tempPoint;
 						maxedOut = true;
 					}
@@ -206,7 +230,7 @@ public class CalculateManifold : MonoBehaviour {
 		}
 
 
-		VectorLine line2d = new VectorLine ("line2d", linePoints, 2.0f, LineType.Continuous, Joins.Fill);
+		VectorLine line2d = new VectorLine ("line2d", linePoints, 1.0f, LineType.Continuous, Joins.Fill);
 		line2d.Draw ();
 		return points;
 	}

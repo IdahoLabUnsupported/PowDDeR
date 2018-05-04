@@ -50,6 +50,56 @@ namespace ComportMath
             return ln2t * y;
         }
 
+		public static double InverseTransform2(double[] alpha, double[] beta, double t)
+		{
+			if (t == 0) {
+				return 0;
+			}
+				
+			if (beta [0] < 0.0000001) {
+				return alpha [2] / beta [2] * (1.0 - Math.Exp (-t * beta [2] / beta [1]));
+			} 
+			else {
+			
+				double sqrpart = beta [1] * beta [1] - 4 * beta [0] * beta [2];
+				if (sqrpart >= 0.0) {
+					if (sqrpart < 0.0000001) {
+						double rootS = -beta [1] / (2.0 * beta [0]);
+						double a = alpha [2] / beta [2];
+						double b = -alpha [2] / beta [2];
+						double c = (alpha [1] / beta [2] - alpha [2] * beta [1]) / (beta [2] * beta [0]) + alpha [2] * rootS / beta [2];
+
+						return a + b * Math.Exp (rootS * t) + c * t * Math.Exp (rootS * t);
+					} else {
+						double[] roots = { 0.0, 0.0 };
+						roots [0] = (-beta [1] + Math.Sqrt (sqrpart)) / (2 * beta [0]);
+						roots [1] = (-beta [1] - Math.Sqrt (sqrpart)) / (2 * beta [0]);
+
+						double a = alpha [2] / beta [2];
+						double b = (alpha [1] * -roots [0] + alpha [2]) / (beta [0] * -roots [0] * (-roots [0] + roots [1]));
+						double c = (alpha [1] * -roots [1] + alpha [2]) / (beta [0] * -roots [1] * (-roots [1] + roots [0]));
+
+						return a + b * Math.Exp (roots [0] * t) + c * Math.Exp (roots [1] * t);
+					}
+				} else {
+					double real = -beta [1] / (2 * beta [0]);
+					double im = Math.Sqrt (-sqrpart) / (2.0 * beta [0]);
+
+					if (alpha [0] == 0.0) {
+						double a = alpha [2] / beta [2];
+						return a * (1.0 - Math.Exp (real * t) * Math.Cos (im * t));
+					} else {
+						double eqAlpha = alpha [0] / alpha [1];
+						double eqPhi = Math.Atan (im / (eqAlpha - real));
+
+						double a = (alpha [2] / beta [2]) * Math.Sqrt (Math.Pow ((eqAlpha - real), 2.0) + Math.Pow (im, 2.0)) / im;
+						return a * (1.0 - Math.Exp (real * t) * Math.Cos (im * t + eqPhi));
+					}
+
+				}
+			}
+		}
+
 		public static double Factorial(double n)
 		{
 			double result;

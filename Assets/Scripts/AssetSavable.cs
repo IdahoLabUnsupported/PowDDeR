@@ -19,6 +19,12 @@ public class AssetSavable{
 	//Beta3*s^2+Beta2*s+Beta1
 	//-----------------------
 	//Alpha3*s^2+Alpha2*s+Alpha1
-	public float alpha1,alpha2,alpha3;
-	public float beta1,beta2,beta3;
+	public float palpha1,palpha2,palpha3;
+	public float pbeta1,pbeta2,pbeta3;
+
+	//Beta3*s^2+Beta2*s+Beta1
+	//-----------------------
+	//Alpha3*s^2+Alpha2*s+Alpha1
+	public float qalpha1,qalpha2,qalpha3;
+	public float qbeta1,qbeta2,qbeta3;
 }
