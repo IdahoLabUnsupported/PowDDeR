@@ -120,7 +120,7 @@ public class CalculateManifold : MonoBehaviour {
 					}
 				} else {
 					//handle p transfer function
-					Pt [i] = (float)(Laplace.InverseTransform2 (pnumer, pdenom, currentTime-latency));
+					Pt [i] = (float)(asset.maxP * Laplace.InverseTransform2 (pnumer, pdenom, currentTime-latency));
 
 				}
 
@@ -135,7 +135,7 @@ public class CalculateManifold : MonoBehaviour {
 					}
 				} else {
 					//handle q transfer function
-					Qt [i] = asset.maxQ/2 * (float)(Laplace.InverseTransform2 (qnumer, qdenom, currentTime-latency));
+					Qt [i] = (float)(asset.maxQ * (Laplace.InverseTransform2 (qnumer, qdenom, currentTime-latency)));
 
 				}
 			}
