@@ -49,11 +49,12 @@ namespace ComportMath
             }
             return ln2t * y;
         }
-
+		// beta = denom
+		// alpha = numer
 		public static double InverseTransform2(double[] alpha, double[] beta, double t)
 		{
 			if (t == 0) {
-				return 0;
+				return 0.0;
 			}
 				
 			if (beta [0] < 0.0000001) {

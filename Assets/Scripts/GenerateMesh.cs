@@ -175,7 +175,7 @@ public class GenerateMesh : MonoBehaviour {
 						numMesh = count / MAX_VERTEX;
 
 						// if this is the first asset just add it to the points because no addition needs to be calculated
-						if (first) {
+						if (first && !asset.load) {
 							points [numMesh].Add (point);
 
 						} else {

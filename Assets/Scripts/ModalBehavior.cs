@@ -176,6 +176,7 @@ public class ModalBehavior : MonoBehaviour {
 		asset.maxQ = assetEdit.maxQ;
 		asset.energy = assetEdit.energy;
 		asset.active = activeToggle.isOn;
+		asset.load = loadToggle.isOn;
 
 		asset.palpha1 = assetEdit.palpha1;
 		asset.palpha2 = assetEdit.palpha2;
