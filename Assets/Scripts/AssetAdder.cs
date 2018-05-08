@@ -53,6 +53,9 @@ public class AssetAdder : MonoBehaviour {
 
 		assetComponent.setActive(savedAsset.active);
 
+		assetComponent.load = savedAsset.load;
+
+
 		newDevice.GetComponentInChildren<Text> ().text = savedAsset.aname;
 
 	}

@@ -179,15 +179,32 @@ public class GenerateMesh : MonoBehaviour {
 							points [numMesh].Add (point);
 
 						} else {
+							float newX = 0.0f;
+							float newY = 0.0f;
 
 							if (index >= MAX_VERTEX) {
 								index = 0;
 							}
+							// if this isn't a load add in the points, otherwise subtract it
+							if (!asset.load) {
 
+								newX = points [numMesh] [index].x + point.x;
+								newY = points [numMesh] [index].y + point.y;
+							} else {
+
+								if (points [numMesh] [index].x - point.x > 0) {
+									newX = points [numMesh] [index].x - point.x;
+								} 
+
+								if (points [numMesh] [index].y - point.y > 0) {
+									newY = points [numMesh] [index].y - point.y;
+								}
+
+							}
+								
 							// don't add z's because that is the time step
-							float newX = points [numMesh] [index].x + point.x;
-							float newY = points [numMesh] [index].y + point.y;
 							float newZ = point.z;
+
 							point = new Vector3 (newX, newY, newZ);
 							((List<Vector3>)(points [numMesh])) [index] = point;
 							index++;

@@ -15,16 +15,18 @@ public class Asset : MonoBehaviour {
 	public float maxQ;
 	public float energy;
 	public bool active = true;
+	public bool load = false;
 
-	//Beta3*s^2+Beta2*s+Beta1
+
+	//Alpha1*s^2+Alpha2*s+Alpha3
 	//-----------------------
-	//Alpha3*s^2+Alpha2*s+Alpha1
+	//Beta1*s^2+Beta2*s+Beta3
 	public float palpha1,palpha2,palpha3;
 	public float pbeta1,pbeta2,pbeta3;
 
-	//Beta3*s^2+Beta2*s+Beta1
+	//Alpha1*s^2+Alpha2*s+Alpha3
 	//-----------------------
-	//Alpha3*s^2+Alpha2*s+Alpha1
+	//Beta1*s^2+Beta2*s+Beta3
 	public float qalpha1,qalpha2,qalpha3;
 	public float qbeta1,qbeta2,qbeta3;
 
@@ -45,6 +47,8 @@ public class Asset : MonoBehaviour {
 		active = asset.active;
 		nameIndex = asset.nameIndex;
 
+		load = asset.load;
+
 		GetComponentInChildren<Text> ().text = aname;
 
 		onChanged.Invoke (aname, this.gameObject, oldName);
@@ -61,6 +65,9 @@ public class Asset : MonoBehaviour {
 		maxQ = asset.maxQ;
 		energy = asset.energy;
 		active = asset.active;
+
+		load = asset.load;
+
 		nameIndex = asset.nameIndex;
 
 		palpha1 = asset.palpha1;

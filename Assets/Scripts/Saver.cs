@@ -38,6 +38,22 @@ public class Saver : MonoBehaviour {
 			assetSave.energy = asset.energy;
 			assetSave.active = asset.active;
 
+			assetSave.palpha1 = asset.palpha1;
+			assetSave.palpha2 = asset.palpha2;
+			assetSave.palpha3 = asset.palpha3;
+			assetSave.pbeta1 = asset.pbeta1;
+			assetSave.pbeta2 = asset.pbeta2;
+			assetSave.pbeta3 = asset.pbeta3;
+
+			assetSave.qalpha1 = asset.qalpha1;
+			assetSave.qalpha2 = asset.qalpha2;
+			assetSave.qalpha3 = asset.qalpha3;
+			assetSave.qbeta1 = asset.qbeta1;
+			assetSave.qbeta2 = asset.qbeta2;
+			assetSave.qbeta3 = asset.qbeta3;
+
+			assetSave.load = asset.load;
+
 			//Convert to Json
 			jsonData = JsonUtility.ToJson(assetSave);
 

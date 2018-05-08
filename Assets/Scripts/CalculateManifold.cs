@@ -65,19 +65,19 @@ public class CalculateManifold : MonoBehaviour {
 //		beta2 = asset.beta2;
 //		beta1 = asset.beta1;
 
-		pdenom [2] = asset.palpha1;
-		pdenom [1] = asset.palpha2;
-		pdenom [0] = asset.palpha3;
-		pnumer [2] = asset.pbeta1;
-		pnumer [1] = asset.pbeta2;
-		pnumer [0] = asset.pbeta3;
+		pnumer [0] = asset.palpha1;
+		pnumer [1] = asset.palpha2;
+		pnumer [2] = asset.palpha3;
+		pdenom [0] = asset.pbeta1;
+		pdenom [1] = asset.pbeta2;
+		pdenom [2] = asset.pbeta3;
 
-		qdenom [2] = asset.qalpha1;
-		qdenom [1] = asset.qalpha2;
-		qdenom [0] = asset.qalpha3;
-		qnumer [2] = asset.qbeta1;
-		qnumer [1] = asset.qbeta2;
-		qnumer [0] = asset.qbeta3;
+		qnumer [0] = asset.qalpha1;
+		qnumer [1] = asset.qalpha2;
+		qnumer [2] = asset.qalpha3;
+		qdenom [0] = asset.qbeta1;
+		qdenom [1] = asset.qbeta2;
+		qdenom [2] = asset.qbeta3;
 
 		// new latency with added eu
 		float latency = asset.latency + euLatency;
@@ -102,7 +102,6 @@ public class CalculateManifold : MonoBehaviour {
 		for (int i = 0; i < maxCountT; i++) {
 //			PTransfer.Add(laplace.InverseTransform (this.f, i));
 //
-
 			Pt.Add (0.0f);
 			Qt.Add (0.0f);
 			// if time hasn't reached latency time set to 0
@@ -121,7 +120,7 @@ public class CalculateManifold : MonoBehaviour {
 					}
 				} else {
 					//handle p transfer function
-					Pt [i] = asset.maxP * (float)(Laplace.InverseTransform2 (pnumer, pdenom, currentTime-latency));
+					Pt [i] = (float)(Laplace.InverseTransform2 (pnumer, pdenom, currentTime-latency));
 
 				}
 
@@ -136,7 +135,7 @@ public class CalculateManifold : MonoBehaviour {
 					}
 				} else {
 					//handle q transfer function
-					Qt [i] = asset.maxQ * (float)(Laplace.InverseTransform2 (qnumer, qdenom, currentTime-latency));
+					Qt [i] = asset.maxQ/2 * (float)(Laplace.InverseTransform2 (qnumer, qdenom, currentTime-latency));
 
 				}
 			}
@@ -149,9 +148,10 @@ public class CalculateManifold : MonoBehaviour {
 //
 //			currentPolar = 0.0f;
 //			float test =  (float)Laplace.gwr (this.f, (double)300, 380);
-			if (linePoints.Count <= 16380) {
+//
+			if (linePoints.Count <= 380) {
 			//	linePoints.Add(new Vector2(currentTime, (float)Laplace.InverseTransform (this.f, (double)currentTime)));
-				linePoints.Add(new Vector2(currentTime, (float)(asset.maxP * Laplace.InverseTransform2 (pnumer, pdenom, currentTime))));
+				linePoints.Add(new Vector2(currentTime, (float)(Laplace.InverseTransform2 (pnumer, pdenom, currentTime))));
 			}
 
 			currentPolar = 0.0f;
