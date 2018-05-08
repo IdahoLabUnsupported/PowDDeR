@@ -190,7 +190,7 @@ public class GenerateMesh : MonoBehaviour {
 
 								newX = points [numMesh] [index].x + point.x;
 								newY = points [numMesh] [index].y + point.y;
-							} else {
+							} else if(points [numMesh].Count>0){
 
 								if (points [numMesh] [index].x - point.x > 0) {
 									newX = points [numMesh] [index].x - point.x;
@@ -206,7 +206,11 @@ public class GenerateMesh : MonoBehaviour {
 							float newZ = point.z;
 
 							point = new Vector3 (newX, newY, newZ);
-							((List<Vector3>)(points [numMesh])) [index] = point;
+
+							if (points [numMesh].Count > 0) {
+								((List<Vector3>)(points [numMesh])) [index] = point;
+							}
+
 							index++;
 						}
 
