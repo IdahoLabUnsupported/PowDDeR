@@ -114,6 +114,7 @@ public class GenerateMesh : MonoBehaviour {
 	{
 		for (int i = 0; i < MAX_MESHES; i++) {
 			points [i].Clear();
+			negativePoints [i].Clear ();
 		}
 
 		//set the background color
@@ -186,9 +187,11 @@ public class GenerateMesh : MonoBehaviour {
 						// if this is the first asset just add it appropriately to the points because no addition needs to be calculated
 						if (first && !asset.load) {
 							points [numMesh].Add (point);
+							negativePoints [numMesh].Add (Vector3.zero);
 
 						} else if (first && asset.load) {
 							negativePoints [numMesh].Add (point);
+							points [numMesh].Add (Vector3.zero);
 
 						}else{
 							float newX = 0.0f;
