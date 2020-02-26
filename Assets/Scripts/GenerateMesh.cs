@@ -4,7 +4,7 @@ using UnityEngine;
 using Vectrosity;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
-
+//just adding a comment so I can find the correct files
 //generate screen shot
 
 public class GenerateMesh : MonoBehaviour {
