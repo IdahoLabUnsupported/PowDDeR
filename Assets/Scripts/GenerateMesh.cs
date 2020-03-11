@@ -126,7 +126,7 @@ public class GenerateMesh : MonoBehaviour
 		greenValueTextObj.text = greenSliderObj.value.ToString();
 		blueValueTextObj.text = blueSliderObj.value.ToString();
 
-		currentObjectColor = new Color(0, 0, 0, 1);//RGBa colors. 
+		currentObjectColor = new Color(0, 0.5f, 0.5f, 1);//RGBa colors. 
 		setObjectColor(currentObjectColor);
 
 		// Initialize the background color palette text fields
@@ -143,7 +143,7 @@ public class GenerateMesh : MonoBehaviour
 		greenValueTextLine.text = greenSliderLine.value.ToString();
 		blueValueTextLine.text = blueSliderLine.value.ToString();
 
-		currentLineColor = new Color(0, 0, 0, 1);//RGBa colors.
+		currentLineColor = new Color(1, 0, 0, 1);//RGBa colors.
 		setLineColor(currentLineColor);
 	}
 
