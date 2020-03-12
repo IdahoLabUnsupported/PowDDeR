@@ -34,7 +34,7 @@ limitations under the License.
 -----
 
 
-EXPLAIN PURPOSE OF PowDDeR
+Power Distribution Designing for Resilience Application (PowDDeR) is a software application to succinctly capture the capabilities of a power system to respond to disturbances, including natural or human (malicious or errors) caused disturbances. The software provides a measure of resilience for power systems. 
 
 
 Software needed:
