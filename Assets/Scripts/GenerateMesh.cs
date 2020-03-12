@@ -134,6 +134,8 @@ public class GenerateMesh : MonoBehaviour
 
 	//--------------------------------------------------------------------------------
 
+	public Toggle blackAxesToggle; 
+
 	public TextMesh pWatt;
 	public TextMesh xMax;
 	public TextMesh xMin;
@@ -204,6 +206,8 @@ public class GenerateMesh : MonoBehaviour
 
 		currentLineColor = new Color(1, 0, 0, 1);//RGBa colors.
 		setLineColor(currentLineColor);
+
+		setAxesColor(blackAxesToggle.isOn); 
 	}
 
 //--------------------------------------------------------------------------------------
@@ -422,8 +426,61 @@ public class GenerateMesh : MonoBehaviour
 		return currentLineColor;
 	}
 
-
+	//--------------------------------------------------------------------------
+	//--------------------------------------------------------------------------
+	//--------------------------------------------------------------------------
 	
+	public void	setAxesColor(bool blackAxes)
+	{
+		if(blackAxes)
+		{
+			pWatt.color = new Color(0,0,0,1);
+			xMax.color = new Color(0, 0, 0, 1);
+			xMin.color = new Color(0, 0, 0, 1);
+
+			qVar.color = new Color(0, 0, 0, 1);
+			yMax.color = new Color(0, 0, 0, 1);
+			yMin.color = new Color(0, 0, 0, 1);
+
+			tSec.color = new Color(0, 0, 0, 1);
+			zMax.color = new Color(0, 0, 0, 1);
+			zMin.color = new Color(0, 0, 0, 1);
+
+			pWatt2D.color = new Color(0, 0, 0, 1);
+			xOrigin.color = new Color(0, 0, 0, 1);
+			xMax2D.color = new Color(0, 0, 0, 1);
+			xMin2D.color = new Color(0, 0, 0, 1);
+			qVar2D.color = new Color(0, 0, 0, 1);
+			yOrigin.color = new Color(0, 0, 0, 1);
+			yMax2D.color = new Color(0, 0, 0, 1);
+			yMin2D.color = new Color(0, 0, 0, 1);
+}
+		else
+		{
+			pWatt.color = new Color(1, 0, 0, 1);
+			xMax.color = new Color(1, 0, 0, 1);
+			xMin.color = new Color(1, 0, 0, 1);
+
+			qVar.color = new Color(0.42f, 0.93f, 0, 1);
+			yMax.color = new Color(0.42f, 0.93f, 0, 1);
+			yMin.color = new Color(0.42f, 0.93f, 0, 1);
+
+			tSec.color = new Color(0, 0, 1, 1);
+			zMax.color = new Color(0, 0, 1, 1);
+			zMin.color = new Color(0, 0, 1, 1);
+
+			pWatt2D.color = new Color(1, 0, 0, 1);
+			xOrigin.color = new Color(1, 0, 0, 1);
+			xMax2D.color = new Color(1, 0, 0, 1);
+			xMin2D.color = new Color(1, 0, 0, 1);
+
+			qVar2D.color = new Color(0.42f, 0.93f, 0, 1);
+			yOrigin.color = new Color(0.42f, 0.93f, 0, 1);
+			yMax2D.color = new Color(0.42f, 0.93f, 0, 1);
+			yMin2D.color = new Color(0.42f, 0.93f, 0, 1);
+		}
+
+	}
 
 	public void onSliderChange()
 	{
