@@ -39,7 +39,7 @@ Power Distribution Designing for Resilience Application (PowDDeR) is a software 
 
 Software needed:
 ----
-PROVIDE LIST AND INSTRSUCTIONS
+Unity3D: Developed with Versions 5.5.2f1, 5.5.2p2. 
 
 
 Licensing
