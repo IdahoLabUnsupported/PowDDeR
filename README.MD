@@ -41,6 +41,7 @@ Software needed:
 ----
 Unity3D: Developed with Versions 5.5.2f1, 5.5.2p2. 
 
+	To run PowDDer in Unity, open the "front.unity" scene and press play. 
 
 Licensing
 -----
