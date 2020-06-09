@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowDDer", "Assembly-CSharp.csproj", "{1B7A35CD-1F79-8489-3FB8-16266198FB2A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowDDer", "Assembly-CSharp-Editor.csproj", "{5F3A3E79-E482-DE02-F51C-CDA6F6446642}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1B7A35CD-1F79-8489-3FB8-16266198FB2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7A35CD-1F79-8489-3FB8-16266198FB2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7A35CD-1F79-8489-3FB8-16266198FB2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7A35CD-1F79-8489-3FB8-16266198FB2A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F3A3E79-E482-DE02-F51C-CDA6F6446642}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F3A3E79-E482-DE02-F51C-CDA6F6446642}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F3A3E79-E482-DE02-F51C-CDA6F6446642}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F3A3E79-E482-DE02-F51C-CDA6F6446642}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
