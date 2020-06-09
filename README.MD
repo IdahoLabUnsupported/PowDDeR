@@ -2,7 +2,11 @@
 Power Distribution Designing for Resilience Application (PowDDeR) 
 
 Power Distribution Designing for Resilience Application (PowDDeR) is a software application to succinctly capture the capabilities of a power system to respond to disturbances, including natural or human (malicious or errors) caused disturbances. The software provides a measure of resilience for power systems. 
- 
+
+### Executables
+We have included executables for both Windows and Mac. 
+
+
 ### Other Software
 Idaho National Laboratory is a cutting edge research facility which is a constantly producing high quality research and software. Feel free to take a look at our other software and scientific offerings at:
 
